@@ -1,0 +1,30 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - when: always
+
+stages:
+  - build
+
+build-main:
+  tags:
+    - shell
+  stage: build
+  script:
+    - echo "Hello World! from main branch"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "main"'
+      when: always
+    - when: never
+
+build-branches:
+  tags:
+    - shell
+  stage: build
+  script:
+    - echo "Hello World! from other branches"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "main"'
+      when: never
+    - when: always
