@@ -47,7 +47,7 @@ becomes
 ```sh
   rules:
     - if: '$CI_PIPELINE_SOURCE == "main"'
-      when: always
+      when: on_success
     - when: never
 ```
 while
@@ -60,7 +60,7 @@ becomes
   rules:
     - if: '$CI_PIPELINE_SOURCE == "main"'
       when: never
-    - when: always
+    - when: on_success
 ```
 
 While this works in most cases, you will notice that the pipeline triggers twice if you have a merge request opened on your branch. This is a new unexpected logic that was added with the update. To get rid of the duplication you have to disable this feature. You can do this by adding:
@@ -69,7 +69,7 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
-    - when: always
+    - when: on_success
 ```
 at the beginning of the pipeline file.
 
@@ -79,7 +79,7 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
-    - when: always
+    - when: on_success
 
 stages:
   - build
@@ -92,7 +92,7 @@ build-main:
     - echo "Hello World! from main branch"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "main"'
-      when: always
+      when: on_success
     - when: never
 
 build-branches:
@@ -104,5 +104,5 @@ build-branches:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "main"'
       when: never
-    - when: always
+    - when: on_success
 ```
