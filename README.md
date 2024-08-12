@@ -69,7 +69,7 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
-    - when: on_success
+    - when: always
 ```
 at the beginning of the pipeline file.
 
@@ -79,7 +79,7 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
-    - when: on_success
+    - when: always
 
 stages:
   - build

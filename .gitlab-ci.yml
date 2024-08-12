@@ -15,7 +15,7 @@ build-main:
     - echo "Hello World! from main branch"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "main"'
-      when: always
+      when: on_success
     - when: never
 
 build-branches:
@@ -27,4 +27,4 @@ build-branches:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "main"'
       when: never
-    - when: always
+    - when: on_success
