@@ -46,7 +46,7 @@ Switch to using rules instead of `only/except`. For example:
 becomes
 ```sh
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: on_success
     - when: never
 ```
@@ -58,7 +58,7 @@ while
 becomes
 ```sh
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: never
     - when: on_success
 ```
@@ -67,7 +67,7 @@ While this works in most cases, you will notice that the pipeline triggers twice
 ```sh
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "merge_request_event"
       when: never
     - when: always
 ```
@@ -77,7 +77,7 @@ So the updated pipeline is:
 ```sh
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "merge_request_event"
       when: never
     - when: always
 
@@ -91,7 +91,7 @@ build-main:
   script:
     - echo "Hello World! from main branch"
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: on_success
     - when: never
 
@@ -102,7 +102,7 @@ build-branches:
   script:
     - echo "Hello World! from other branches"
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: never
     - when: on_success
 ```
