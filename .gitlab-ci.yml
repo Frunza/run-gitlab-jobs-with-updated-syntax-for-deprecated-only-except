@@ -14,7 +14,7 @@ build-main:
   script:
     - echo "Hello World! from main branch"
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: on_success
     - when: never
 
@@ -25,6 +25,6 @@ build-branches:
   script:
     - echo "Hello World! from other branches"
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: never
     - when: on_success

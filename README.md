@@ -67,7 +67,7 @@ While this works in most cases, you will notice that the pipeline triggers twice
 ```sh
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
     - when: always
 ```
@@ -77,7 +77,7 @@ So the updated pipeline is:
 ```sh
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
     - when: always
 
